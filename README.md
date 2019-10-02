@@ -1,2 +1,2 @@
-# fun__animations
+# Animations
 Simple animations
