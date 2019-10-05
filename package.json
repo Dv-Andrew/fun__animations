@@ -1,13 +1,10 @@
 {
+  "private": true,
   "name": "animations",
-  "version": "0.0.1",
   "description": "Simple animations",
-  "main": "index.html",
+  "version": "0.0.1",
   "repository": "git@github.com:Dv-Andrew/fun__animations.git",
   "author": "Dv-Andrew <dvoeglazov.andrey24@gmail.com>",
   "license": "MIT",
-  "private": true,
-  "devDependencies": {
-    "parcel": "^2.0.0-alpha.1.1"
-  }
+  "devDependencies": {}
 }
