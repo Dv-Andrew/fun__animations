@@ -17,7 +17,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].[chunkhash].js'
+    filename: '[name].[contenthash:8].js'
   },
 
   devtool: 'inline-source-map',
@@ -44,14 +44,14 @@ module.exports = {
     new webpack.ProgressPlugin(),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
-      filename: 'styles.[chunkhash].css'
+      filename: 'styles.[contenthash:8].css'
     }),
     new HtmlWebpuckPlugin({
       template: `${projectPath}/index.html`,
       filename: 'index.html',
-      cache: true,
+      inject: true,
       hash: true,
-      inject: false
+      cache: true
     }),
     new WebpackMd5Hash()
   ],
