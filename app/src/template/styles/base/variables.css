@@ -1,0 +1,8 @@
+:root,
+:root[data-theme="dark"] {
+    --color__text_main: rgb(235, 237, 245);
+}
+
+:root[data-theme="light"] {
+    --color__text_main: rgb(16, 17, 23);
+  }

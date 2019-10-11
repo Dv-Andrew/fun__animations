@@ -1,5 +1,4 @@
-import Test from './test';
-
-console.log('main.ts is run');
-
-const test = new Test('test.ts is run');
+const message =
+`Looks like you don't choosed a project to compile.
+Please set up a "PROJECT" environment variable.`
+console.warn(message);
