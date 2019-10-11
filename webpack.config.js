@@ -17,7 +17,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].[contenthash:8].js'
+    filename: '[contenthash].index.js'
   },
 
   devtool: 'inline-source-map',
@@ -27,15 +27,28 @@ module.exports = {
   },
   module: {
     rules: [
-      { test: /\.ts$/, use: 'ts-loader', exclude: '/node_modules/' },
+      { test: /\.ts$/, use: ['ts-loader'], exclude: '/node_modules/' },
+      {
+        test: /\.html$/, use: ['html-loader']
+      },
       {
         test: /\.css$/,
         use: [
-          'style-loader',
           MiniCssExtractPlugin.loader,
-          { loader: 'css-loader', options: { importLoaders: 1 } },
+          'css-loader']
+          ,
           'postcss-loader'
         ]
+      },
+      {
+        test: /\.(svg|png|jpg)$/,
+        use: {
+          loader: "file-loader",
+          options: {
+            name: '[hash:16].[name].[ext]',
+            outputPath: 'assets'
+          }
+        }
       }
     ]
   },
@@ -44,7 +57,7 @@ module.exports = {
     new webpack.ProgressPlugin(),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
-      filename: 'styles.[contenthash:8].css'
+      filename: '[contenthash].styles.css'
     }),
     new HtmlWebpuckPlugin({
       template: `${projectPath}/index.html`,
@@ -62,7 +75,6 @@ module.exports = {
     host: 'localhost',
     port: 3000,
     compress: true,
-    overlay: true,
-    writeToDisk: true
+    overlay: true
   }
 }
