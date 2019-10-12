@@ -4,4 +4,4 @@ module.exports = {
     'cssnano': {},
     'autoprefixer': {}
   }
-}
+};
