@@ -1,8 +1,12 @@
 :root,
 :root[data-theme="dark"] {
+    --color__bg_main: rgb(28, 29, 35);
+
     --color__text_main: rgb(235, 237, 245);
 }
 
 :root[data-theme="light"] {
+    --color__bg_main: rgb(228, 228, 235);
+
     --color__text_main: rgb(16, 17, 23);
   }
