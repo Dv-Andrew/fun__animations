@@ -1,0 +1,6 @@
+.canvas {
+    display: block;
+    width: 95%;
+    height: calc(100vh - 7rem);
+    margin: 0 auto;
+}
