@@ -2,15 +2,16 @@ const webpack = require('webpack');
 const path = require('path');
 
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const HtmlWebpuckPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
 
-const projectFolder = 'template';
+const projectFolder = process.env.PROJECT !== undefined ? process.env.PROJECT : 'template';
 const projectPath = `./app/src/${projectFolder}`;
 
 module.exports = {
   context: __dirname,
+  mode: 'production',
 
   entry: {
     index: `${projectPath}/index.ts`
@@ -19,8 +20,6 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: '[contenthash].index.js'
   },
-
-  devtool: 'inline-source-map',
 
   resolve: {
     extensions: [".js", ".ts", ".tsx"]
@@ -42,7 +41,7 @@ module.exports = {
       {
         test: /\.(svg|png|jpg)$/,
         use: {
-          loader: "file-loader",
+          loader: 'file-loader',
           options: {
             name: '[hash:16].[name].[ext]',
             outputPath: 'assets'
@@ -58,22 +57,14 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[contenthash].styles.css'
     }),
-    new HtmlWebpuckPlugin({
+    new HtmlWebpackPlugin({
       template: `${projectPath}/index.html`,
       filename: 'index.html',
+      minify: false,
       inject: true,
       hash: true,
       cache: true
     }),
     new WebpackMd5Hash()
-  ],
-
-  devServer: {
-    contentBase: [path.join(__dirname, 'dist')],
-    index: 'index.html',
-    host: 'localhost',
-    port: 3000,
-    compress: true,
-    overlay: true
-  }
+  ]
 };

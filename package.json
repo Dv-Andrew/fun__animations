@@ -7,8 +7,8 @@
   "author": "Dv-Andrew <dvoeglazov.andrey24@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "webpack --mode=production",
-    "dev": "webpack-dev-server --mode=development --progress --color --open"
+    "build": "webpack --config=webpack.config.production.js",
+    "dev": "webpack-dev-server --config=webpack.config.development.js --progress --color --open"
   },
   "devDependencies": {
     "autoprefixer": "^9.6.4",
