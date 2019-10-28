@@ -1,0 +1,19 @@
+.title_size_like-text {
+    font-size: 1rem;
+}
+
+.title_margin_collapse {
+    margin: 0;
+}
+
+.link {
+    color: var(--color__text_main);
+    text-decoration: none;
+    outline: none;
+}
+
+.link:hover,
+.link:focus {
+    text-decoration: underline;
+    opacity: .8;
+}
