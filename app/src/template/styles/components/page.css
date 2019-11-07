@@ -1,0 +1,6 @@
+.page {
+    min-height: 100vh;
+
+    background-color: var(--color__bg_main);
+    color: var(--color__text_main);
+}
