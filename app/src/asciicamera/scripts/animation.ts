@@ -46,28 +46,28 @@ export default class Animation {
     //  setup video
     this._video = document.querySelector('.video');
     const constraints = {
+      audio: false,
       video: {
         width: 512,
         height: 512
       }
     };
-    navigator.getUserMedia(constraints,
-      (stream) => {
+    navigator.mediaDevices.getUserMedia(constraints)
+      .then((stream) => {
         this._video.srcObject = stream;
         this._video.play().then();
-    },
-      (error) => {
-      alert('Error when getting media');
-      console.warn(error);
-    });
-
+      })
+      .catch((error) => {
+        alert('Error when getting media');
+        console.warn(error);
+      });
   }
 
   private draw() {
     this._context.clearRect(0, 0, this._canvas.width, this._canvas.height);
 
     const fontHeight = 10;
-    const { videoWidth: width, videoHeight: height } = this._video;
+    const {videoWidth: width, videoHeight: height} = this._video;
 
     this._context.textBaseline = 'top';
     this._context.font = `${fontHeight}px Consolas`;
@@ -83,7 +83,7 @@ export default class Animation {
       for (let y = 0; y < height; y += fontHeight) {
         for (let x = 0; x < width; x += fontWidth) {
           const frameSection = this._hiddenContext.getImageData(x, y, fontWidth, fontHeight);
-          const { r, g, b } = this.getAverageRGB(frameSection);
+          const {r, g, b} = this.getAverageRGB(frameSection);
           const randomCharacter = this._charset[Math.floor(Math.random() * this._charset.length)];
 
           this._context.fillStyle = `rgb(${r},${g},${b})`;
