@@ -9,7 +9,7 @@ export default class Animation {
   private _fps: number;
 
   private _video: any;
-  private _charset: string;
+  private readonly _charset: string;
 
   constructor(canvas, hiddenCanvas) {
     this._canvas = canvas;
@@ -64,12 +64,9 @@ export default class Animation {
   }
 
   private draw() {
-  }
-
-  private update(elapsedTime: number) {
     this._context.clearRect(0, 0, this._canvas.width, this._canvas.height);
 
-    const fontHeight = 8;
+    const fontHeight = 10;
     const { videoWidth: width, videoHeight: height } = this._video;
 
     this._context.textBaseline = 'top';
@@ -90,10 +87,17 @@ export default class Animation {
           const randomCharacter = this._charset[Math.floor(Math.random() * this._charset.length)];
 
           this._context.fillStyle = `rgb(${r},${g},${b})`;
-          this._context.fillText(randomCharacter, x, y);
+          this._context.fillText(randomCharacter,
+            x + this._canvas.width / 2 - width / 2,
+            y + this._canvas.height / 2 - height / 2
+          );
         }
       }
     }
+  }
+
+  private update(elapsedTime: number) {
+
   }
 
   private getAverageRGB = (frame) => {
